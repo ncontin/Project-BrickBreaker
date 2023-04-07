@@ -56,15 +56,24 @@ let ballDirectionX = ballSpeed;
 // ballSpeed * (Math.random() * 2 - 1); // Random trajectory
 let ballDirectionY = ballSpeed;
 
-function moveBall = () {
+function moveBall() {
   ballX += ballDirectionX;
   ballY += ballDirectionY;
 }
 
+// Collisions
+function ballCollision() {
+  if (ballX > canvas.width - ballRadius) {
+    ballDirectionX *= -1;
+  }
+  if (ballX < 0 + ballRadius) {
+    ballDirectionX *= -1;
+  }
+}
 
 function resetBall() {
-  ball.x = canvas.width / 2;
-  ball.y = canvas.height - 100;
+  ballX = paddleX + paddleWidth / 2;
+  ballY = canvas.height - 2 * paddleHeight;
 }
 
 function drawBall() {
@@ -75,19 +84,8 @@ function drawBall() {
   ctx.fill();
   ctx.closePath();
 }
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawPaddle();
-  drawBall();
-  moveBall()
-
-
-
-  animationFrameId = requestAnimationFrame(animate);
-}
-animate();
-
+resetBall();
+// Moving Paddle
 document.addEventListener("keydown", (event) => {
   console.log(event);
   if (event.code === "ArrowLeft") {
@@ -96,9 +94,29 @@ document.addEventListener("keydown", (event) => {
   if (event.code === "ArrowRight") {
     isPaddleGoingRight = true;
   }
+  if (ballDirectionX === 0 && ballDirectionY === 0 && event.code === "Space") {
+  }
 });
 
 document.addEventListener("keyup", (event) => {
   isPaddleGoingLeft = false;
   isPaddleGoingRight = false;
 });
+
+console.log(event);
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawPaddle();
+  drawBall();
+  resetBall();
+  moveBall();
+  ballCollision();
+
+  animationFrameId = requestAnimationFrame(animate);
+}
+animate();
+
+if (ballDirectionX || ballDirectionY) {
+  drawBall();
+}

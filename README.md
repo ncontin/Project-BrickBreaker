@@ -15,6 +15,7 @@ MVP
 
 Backlog
 
+- add difficulty
 - power ups
 - multiple levels
 - balls breaker (girlfriend edition)
