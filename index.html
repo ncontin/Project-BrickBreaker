@@ -9,33 +9,73 @@
     <title>Brick Breaker</title>
   </head>
   <body>
-    <header>
-      <h1>Brick Breaker</h1>
-    </header>
-  <!--   <div class="container">
-      <div>
-        Best game I ever played <br />
-        Matt const gameReview = 10
-      </div>
-      <div>
-        this game changed my life <br />
-        Josh 10/10
-      </div>
-      <div>
-        SO addicting I can't stop playing<br />
-        Eric
-      </div>
-      <div>
-        Who created this is an absolute genius <br />
-        my mum
-      </div>
-    </div>
-    <div> -->
-      <button id="start">StartGame</button>
-    </div>
+    <div class="body-container">
+      <header>
+        <h1>Brick Breaker</h1>
+      </header>
+      <div class="center-container">
+        <div class="left-container">
+          <h2 class="h2-left">What people are saying</h2>
 
+          <div class="review-block">
+            "Best game I ever played" <br />
+            Matt - const gameReview = 10
+            <hr />
+          </div>
+          <div class="review-block">
+            "This game changed my life"<br />
+            Josh - 10/10
+            <hr />
+          </div>
+          <div class="review-block">
+            "SO addicting I can't stop playing"<br />
+            Eric
+            <hr />
+          </div>
+          <div class="review-block">
+            "Who created this is an absolute genius"<br />
+            My mum
+          </div>
+        </div>
+
+        <div class="start-container">
+          <button class="start">Play</button>
+          <h3>About</h3>
+          <p class="about-info">
+            In this game, the player moves a PADDLE from side-to-side to hit a BALL. The game's objective is to
+            eliminate all of the BRICKS at the top of the screen by hitting them with the BALL. But, if the ball hits
+            the bottom ENCLOSURE, the player loses a life, when the player has no more lives, the game ends! To win the
+            game, all the BRICKS must be eliminated.
+          </p>
+        </div>
+
+        <div class="right-container">
+          <h2 class="h2-right">Control Keys</h2>
+          <p>Use the arrow keys or the mouse to move the paddle right and left</p>
+          <img class="arrow-img" src="/img/arrowKeys.png" alt="arrowKeys" />
+          <p>Use Spacebar to launch the ball</p>
+          <img class="spacebar-img" src="/img/spacebar.png" alt="spacebar" />
+          <h2>Customize the game</h2>
+          <form id="speed-form">
+            <label for="ball-speed-input">Ball Speed:</label>
+            <input type="number" id="ball-speed-input" min="1" max="20" value="10" />
+          </form>
+          <form id="paddle-form">
+            <label for="paddle-size-input">Paddle Size:</label>
+            <input type="number" id="paddle-size-input" min="1" max="500" value="80" />
+          </form>
+          <form id="ball-form">
+            <label for="ball-size-input">Ball Size:</label>
+            <input type="number" id="ball-size-input" min="1" max="20" value="10" />
+          </form>
+        </div>
+      </div>
+    </div>
     <canvas id="canvas" width="1200" height="600"></canvas>
 
     <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>
+
+<!--     <canvas id="Matrix"></canvas>
+    <script type="text/javascript" src="js/matrix.js"></script> -->
