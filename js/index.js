@@ -70,8 +70,17 @@ function start() {
   let ballLaunched = false;
 
   // score, lives, gameOver
+  let lives = 10;
+  let scoreMultiply = 1;
   let score = 0;
-  let lives = 3;
+
+  function scoreMultiplier() {
+    // multiply score by 2 if ballSpeed greater than 15
+    if (ballSpeed >= 15) {
+      scoreMultiply = 2;
+    }
+  }
+  scoreMultiplier();
 
   function drawScore() {
     ctx.font = "16px Arial";
@@ -106,18 +115,21 @@ function start() {
   }
 
   function congratulations() {
-    if (score === brick.rows * brick.cols) {
+    if (score === brick.rows * brick.cols * scoreMultiply) {
       cancelAnimationFrame(animationFrameId);
       congratulationsScreen();
     }
   }
 
   // BRICKS
-
+  // target the input from the HTML page
+  const brickRowsInput = document.getElementById("brick-rows-input");
+  const brickColsInput = document.getElementById("brick-cols-input");
   // create a brick object
-
   let brick = {
-    rows: 5,
+    // get rows value from the input
+    rows: parseInt(brickRowsInput.value),
+    // get columns value from the input
     cols: 10,
     get width() {
       return canvas.width / this.cols;
@@ -179,8 +191,6 @@ function start() {
   }
 
   function moveBall() {
-    // move the stationary ball with the paddle
-
     if (!ballLaunched) {
       // Set the ball position to the paddle position
       ballX = paddleX + paddleWidth / 2;
@@ -198,7 +208,7 @@ function start() {
     }
   }
 
-  // Collisibackgamons
+  // Collision
   function ballCollision() {
     // if the ball hit the right wall
     if (ballX > canvas.width - ballRadius) {
@@ -237,7 +247,8 @@ function start() {
         ) {
           ballDirectionY *= -1;
           brick.hit = false;
-          score++;
+
+          score = score + 1 * scoreMultiply;
         }
       }
     });
