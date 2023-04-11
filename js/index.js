@@ -2,12 +2,30 @@ const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
 const startBtn = document.querySelector(".start");
+const buttons = document.querySelector(".buttons-wrapper");
+buttons.style.display = "none";
+
+// fit canvas width and height to windows
+/* ctx.canvas.width = window.innerWidth - 200;
+ctx.canvas.height = window.innerHeight; */
 
 window.addEventListener("load", () => {
   canvas.style.display = "none";
 
   startBtn.addEventListener("click", () => {
     start();
+  });
+
+  const restartBtn = document.querySelector(".restart");
+
+  restartBtn.addEventListener("click", () => {
+    canvas.reload();
+  });
+
+  const mainMenuBtn = document.querySelector(".main-menu");
+
+  mainMenuBtn.addEventListener("click", () => {
+    location.reload();
   });
 });
 
@@ -17,7 +35,7 @@ function start() {
   document.querySelector(".body-container").style.display = "none";
   canvas.style.display = "block";
 
-  canvas.style.background = "";
+  buttons.style.display = "block";
 
   // PADDLE VARIABLES
 
@@ -70,16 +88,57 @@ function start() {
   let ballLaunched = false;
 
   // score, lives, gameOver
-  let lives = 10;
+  let lives = 3;
   let scoreMultiply = 1;
   let score = 0;
 
   function scoreMultiplier() {
     // multiply score by 2 if ballSpeed greater than 15
-    if (ballSpeed >= 15) {
-      scoreMultiply = 2;
+    switch (true) {
+      case ballSpeed >= 25:
+        scoreMultiply *= 4;
+        break;
+      case ballSpeed >= 20:
+        scoreMultiply *= 3;
+        break;
+      case ballSpeed >= 15:
+        scoreMultiply *= 2;
+        break;
+      case ballSpeed <= 5:
+        scoreMultiply *= 0.5;
+        break;
+
+      default:
+        // do nothing if none of the above conditions are met
+        break;
+    }
+
+    switch (true) {
+      case paddleWidth <= 25:
+        scoreMultiply *= 4;
+        break;
+      case paddleWidth <= 50:
+        scoreMultiply *= 3;
+        break;
+      case paddleWidth <= 75:
+        scoreMultiply *= 2;
+        break;
+
+      default:
+        // do nothing if none of the above conditions are met
+        break;
+    }
+
+    switch (true) {
+      case ballRadius <= 5:
+        scoreMultiply *= 2;
+        break;
+      default:
+        // do nothing if none of the above conditions are met
+        break;
     }
   }
+
   scoreMultiplier();
 
   function drawScore() {
@@ -124,7 +183,10 @@ function start() {
   // BRICKS
   // target the input from the HTML page
   const brickRowsInput = document.getElementById("brick-rows-input");
+  // tried the same with the columns but is
+
   const brickColsInput = document.getElementById("brick-cols-input");
+
   // create a brick object
   let brick = {
     // get rows value from the input
@@ -248,7 +310,7 @@ function start() {
           ballDirectionY *= -1;
           brick.hit = false;
 
-          score = score + 1 * scoreMultiply;
+          score += 1 * scoreMultiply;
         }
       }
     });
@@ -279,13 +341,17 @@ function start() {
   // moving paddle with the mouse
 
   document.addEventListener("mousemove", (event) => {
-    let mouseX = event.offsetX;
-    paddleX = mouseX - paddleWidth / 2;
+    //check if the target of the event is the canvas element
+    if (event.target === canvas) {
+      //horizontal distance between the mouse pointer and the canvas
+      let mouseX = event.offsetX;
+      paddleX = mouseX - paddleWidth / 2;
 
-    if (paddleX < 0) {
-      paddleX = 0;
-    } else if (paddleX + paddleWidth > canvas.width) {
-      paddleX = canvas.width - paddleWidth;
+      if (paddleX < 0) {
+        paddleX = 0;
+      } else if (paddleX + paddleWidth > canvas.width) {
+        paddleX = canvas.width - paddleWidth;
+      }
     }
   });
 
@@ -297,8 +363,6 @@ function start() {
     }
   });
 
-  console.log(event);
-
   //loop
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -307,10 +371,10 @@ function start() {
     drawBricks();
     drawBall();
     moveBall();
-    ballCollision();
+
     drawScore();
     drawLives();
-
+    ballCollision();
     animationFrameId = requestAnimationFrame(animate);
 
     gameOver();

@@ -62,24 +62,28 @@
           </form>
           <form id="paddle-form">
             <label for="paddle-size-input">Paddle Size:</label>
-            <input type="number" id="paddle-size-input" min="1" max="500" value="80" />
+            <input type="number" id="paddle-size-input" min="1" max="500" value="100" />
           </form>
           <form id="ball-form">
             <label for="ball-size-input">Ball Size:</label>
-            <input type="number" id="ball-size-input" min="1" max="50" value="10" />
+            <input type="number" id="ball-size-input" min="5" max="50" value="10" />
           </form>
           <form id="brick-rows">
             <label for="brick-rows-input">Brick rows:</label>
             <input type="number" id="brick-rows-input" min="1" max="15" value="5" />
           </form>
-          <form id="brick-cols-input">
-            <label for="brick-cols-input">Brick columns:</label>
-            <input type="number" id="brick-cols-input" min="1" max="50" value="10" />
-          </form>
+          <label for="quantity">Score multi:</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="5" value="1" />
         </div>
       </div>
     </div>
-    <canvas id="canvas" width="1200" height="600"></canvas>
+    <div class="canvas-wrapper">
+      <canvas id="canvas" width="1200" height="600"></canvas>
+      <div class="buttons-wrapper">
+        <!-- <button class="restart">Restart</button> -->
+        <button class="main-menu">Main Menu</button>
+      </div>
+    </div>
   </body>
   <script type="text/javascript" src="js/index.js"></script>
 </html>
