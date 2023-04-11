@@ -4,10 +4,12 @@ const ctx = canvas.getContext("2d");
 const startBtn = document.querySelector(".start");
 const buttons = document.querySelector(".buttons-wrapper");
 buttons.style.display = "none";
+const mainMenuBtn = document.querySelector(".main-menu");
 
 // fit canvas width and height to windows
-/* ctx.canvas.width = window.innerWidth - 200;
-ctx.canvas.height = window.innerHeight; */
+ctx.canvas.width = window.innerWidth - 200;
+ctx.canvas.height = window.innerHeight;
+// score, lives, gameOver
 
 window.addEventListener("load", () => {
   canvas.style.display = "none";
@@ -16,16 +18,8 @@ window.addEventListener("load", () => {
     start();
   });
 
-  const restartBtn = document.querySelector(".restart");
-
-  restartBtn.addEventListener("click", () => {
-    canvas.reload();
-  });
-
-  const mainMenuBtn = document.querySelector(".main-menu");
-
   mainMenuBtn.addEventListener("click", () => {
-    location.reload();
+    window.location.reload();
   });
 });
 
@@ -183,9 +177,8 @@ function start() {
   // BRICKS
   // target the input from the HTML page
   const brickRowsInput = document.getElementById("brick-rows-input");
-  // tried the same with the columns but is
-
-  const brickColsInput = document.getElementById("brick-cols-input");
+  // tried the same with the columns but is not working
+  // const brickColsInput = document.getElementById("brick-cols-input");
 
   // create a brick object
   let brick = {
@@ -213,7 +206,7 @@ function start() {
           y: row * brick.height + marginTop,
           height: brick.height,
           width: brick.width,
-          color: "white",
+          color: "green",
           hit: true,
         });
       }
@@ -298,21 +291,29 @@ function start() {
       }
     }
 
-    // if the ball hit the bricks
     brickField.forEach((brick) => {
-      if (brick.hit === true) {
+      // if brick has not been hit
+      if (brick.hit === true)
         if (
           ballX + ballRadius > brick.x &&
           ballX - ballRadius < brick.x + brick.width &&
           ballY + ballRadius > brick.y &&
           ballY - ballRadius < brick.y + brick.height
         ) {
-          ballDirectionY *= -1;
-          brick.hit = false;
-
-          score += 1 * scoreMultiply;
+          // // if ball is inside brick
+          // if ball hit left or right side of brick, change X direction
+          if (ballX + ballRadius - ballDirectionX <= brick.x || ballX - ballDirectionX >= brick.x + brick.width) {
+            ballDirectionX *= -1;
+            brick.hit = false;
+            score += 1 * scoreMultiply;
+          }
+          // if ball hit top or bottom side of brick, change Y direction
+          else {
+            ballDirectionY *= -1;
+            brick.hit = false;
+            score += 1 * scoreMultiply;
+          }
         }
-      }
     });
   }
 
@@ -367,18 +368,25 @@ function start() {
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawPaddle();
-
     drawBricks();
     drawBall();
-    moveBall();
 
+    moveBall();
+    ballCollision();
     drawScore();
     drawLives();
-    ballCollision();
+
     animationFrameId = requestAnimationFrame(animate);
 
     gameOver();
     congratulations();
   }
   animate();
+
+  const restartBtn = document.querySelector(".restart");
+
+  /*   restartBtn.addEventListener("click", () => {
+    canvas.reload();
+  }); */
 }
+
