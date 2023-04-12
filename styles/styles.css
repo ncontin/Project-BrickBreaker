@@ -1,23 +1,51 @@
+#canvas {
+  display: block;
+  margin: auto;
+}
+#logo {
+  display: none;
+}
+
 html {
   background: black;
   height: 100%;
   overflow: hidden;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+  background-image: url("/img/background.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 body {
   font-size: 16px;
-
   color: white;
 }
+
 h1 {
-  font-size: 6rem;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-size: 4em;
+  font-weight: bold;
+  color: white;
   text-align: center;
+  animation: example 4s infinite;
+}
+
+@keyframes example {
+  0% {
+    color: white;
+    text-shadow: none;
+  }
+  25% {
+    color: red;
+    text-shadow: 0 0 10px black, 0 0 20px red;
+  }
+  50% {
+    color: orange;
+    text-shadow: 0 0 10px black, 0 0 20px orange;
+  }
+  75% {
+    color: yellow;
+    text-shadow: 0 0 10px black, 0 0 20px yellow;
+  }
 }
 
 .body-container {
@@ -39,7 +67,6 @@ h1 {
   flex-direction: column;
 
   flex: 1;
-  background-color: green;
 }
 
 .start-container {
@@ -69,7 +96,6 @@ h1 {
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: green;
 }
 
 .about-info {
@@ -109,4 +135,10 @@ h3 {
   margin-left: 2rem;
   height: 4rem;
   width: 8rem;
+}
+
+#canvas {
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-image: url("/img/laser.png") 30% round;
 }

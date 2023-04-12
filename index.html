@@ -53,7 +53,7 @@
           <h2 class="h2-right">Control Keys</h2>
           <p>Use the arrow keys or the mouse to move the paddle right and left</p>
           <img class="arrow-img" src="img/arrowKeys.png" alt="arrowKeys" />
-          <p>Use Spacebar to launch the ball</p>
+          <p>Use Spacebar or left click to launch the ball</p>
           <img class="spacebar-img" src="img/spacebar.png" alt="spacebar" />
           <h2>Customize the game</h2>
           <form id="speed-form">
@@ -62,7 +62,7 @@
           </form>
           <form id="paddle-form">
             <label for="paddle-size-input">Paddle Size:</label>
-            <input type="number" id="paddle-size-input" min="1" max="500" value="100" />
+            <input type="number" id="paddle-size-input" min="25" max="500" value="120" />
           </form>
           <form id="ball-form">
             <label for="ball-size-input">Ball Size:</label>
@@ -72,13 +72,13 @@
             <label for="brick-rows-input">Brick rows:</label>
             <input type="number" id="brick-rows-input" min="1" max="15" value="5" />
           </form>
-          <label for="quantity">Score multi:</label>
-          <input type="number" id="quantity" name="quantity" min="1" max="5" value="1" />
+          <div>Score Multiplier = <span id="multi-score"> 1 </span></div>
         </div>
       </div>
     </div>
     <div class="canvas-wrapper">
       <canvas id="canvas" width="1200" height="600"></canvas>
+
       <div class="buttons-wrapper">
         <!-- <button class="restart">Restart</button> -->
         <button class="main-menu">Main Menu</button>
@@ -86,8 +86,21 @@
     </div>
   </body>
   <script type="text/javascript" src="js/index.js"></script>
-  <script type="text/javascript" src="js/matrix.js"></script>
 </html>
 
 <!--     <canvas id="Matrix"></canvas>
     <script type="text/javascript" src="js/matrix.js"></script> -->
+
+<!--                   [(ngModel)]="model.test"
+              class="form-control"
+              [disabled]="isDisabled()"
+              formControlName="test"
+              list="severity"
+
+
+                          <datalist id="severity">
+              <option value="20">Score 2x</option>
+              <option value="2">Medium</option>
+              <option value="3">Low</option>
+              <option value="4">Negligible</option>
+            </datalist> -->
