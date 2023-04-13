@@ -319,16 +319,12 @@ function start() {
   }
 
   // BRICKS
-  // target the input from the HTML page
-
-  // tried the same with the columns but is not working
-  // const brickColsInput = document.getElementById("brick-cols-input");
 
   // create a brick object
   let brick = {
     // get rows value from the input
     rows: parseInt(brickRowsInput.value),
-    // get columns value from the input
+    // tried the same with the columns but is not working
     cols: 10,
     get width() {
       return canvas.width / this.cols;
