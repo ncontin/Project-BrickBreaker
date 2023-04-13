@@ -31,8 +31,8 @@ index.html
 
 States y States Transitions
 
-splashScreen
-gameScreen
+- splashScreen
+- gameScreen
 
 Task
 List of tasks in order of priority
