@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 const startBtn = document.querySelector(".start");
 const buttons = document.querySelector(".buttons-wrapper");
-buttons.style.display = "none";
+
 const mainMenuBtn = document.querySelector(".main-menu");
 
 const multiScore = document.getElementById("multi-score");
@@ -93,13 +93,14 @@ ctx.canvas.height = window.innerHeight;
 
 window.addEventListener("load", () => {
   canvas.style.display = "none";
-
+  buttons.style.display = "none";
   // declare each multiplier
   let multiBall = 1;
   let multiPaddle = 1;
   let multiSize = 1;
 
-  // display score multiplayer on the landing page
+  // display score multiplier on the landing page
+  // whenever you change the input, calculate the combined multiBall * multiPaddle * multiSize
   ballSpeedInput.addEventListener("change", () => {
     if (ballSpeedInput.value >= 15) {
       multiBall = 2;
@@ -121,7 +122,6 @@ window.addEventListener("load", () => {
     let combineMulti = multiBall * multiPaddle * multiSize;
 
     // display inside the HTML
-
     multiScore.innerText = combineMulti;
   });
 
@@ -173,9 +173,10 @@ function start() {
   // PADDLE VARIABLES
 
   const paddleHeight = 15;
-
+  // get the value from the landing page input
   const paddleWidth = parseInt(paddleSizeInput.value);
   const paddleSpeedValue = 15;
+  // x and y Pos of the paddle
   let paddleX = canvas.width / 2 - paddleWidth / 2;
   let paddleY = canvas.height - paddleHeight;
 
@@ -186,7 +187,6 @@ function start() {
     ctx.beginPath();
     // image, xPos, yPos, width, height
     ctx.drawImage(paddleImg, paddleX, paddleY, paddleWidth, paddleHeight);
-    ctx.fillStyle = "red";
     ctx.fill();
     ctx.closePath();
     if (isPaddleGoingLeft) {
@@ -218,6 +218,7 @@ function start() {
   let ballDirectionX = ballSpeed;
   let ballDirectionY = ballSpeed;
 
+  //set global variable boolean if ball is launched
   let ballLaunched = false;
 
   function scoreMultiplier() {
@@ -311,9 +312,13 @@ function start() {
 
   function congratulations() {
     if (score === brick.rows * brick.cols * scoreMultiply) {
+      // if you finish the game, multiply the score by 4
       score *= 4;
+      // clear the old score so it can update multiply by 4
       ctx.clearRect(0, 0, 100, 30);
+      //displsay updated score
       drawScore();
+      //stop the game
       cancelAnimationFrame(animationFrameId);
       congratulationsScreen();
       sounds.congratulations.play();
@@ -328,6 +333,7 @@ function start() {
     rows: parseInt(brickRowsInput.value),
     // tried the same with the columns but is not working
     cols: 10,
+    // divide the canvas width by the number of columns
     get width() {
       return canvas.width / this.cols;
     },
@@ -340,7 +346,7 @@ function start() {
   function bricks() {
     brickField = [];
     const marginTop = 50;
-
+    // loop rows and cols
     for (let row = 0; row < brick.rows; row++) {
       for (let col = 0; col < brick.cols; col++) {
         brickField.push({
@@ -400,12 +406,6 @@ function start() {
       ballX += ballDirectionX;
       ballY -= ballDirectionY;
     }
-
-    //change the direction of the ball after the collision
-    if (ballY + ballRadius > paddleY && ballX + ballRadius > paddleX && ballX < paddleX + paddleWidth) {
-      let deltaX = ballX + ballRadius - (paddleX + paddleWidth / 2);
-      ballDirectionX = (deltaX / (paddleWidth / 2)) * ballSpeed;
-    }
   }
 
   // Collision
@@ -425,6 +425,12 @@ function start() {
     // if the ball hit the paddle
     else if (ballY + ballRadius > paddleY && ballX + ballRadius > paddleX && ballX < paddleX + paddleWidth) {
       ballDirectionY *= -1;
+    }
+
+    //change the direction of the ball after the collision with the paddle
+    if (ballY + ballRadius > paddleY && ballX + ballRadius > paddleX && ballX < paddleX + paddleWidth) {
+      let deltaX = ballX + ballRadius - (paddleX + paddleWidth / 2);
+      ballDirectionX = (deltaX / (paddleWidth / 2)) * ballSpeed;
     }
 
     // if the ball fall
