@@ -6,7 +6,7 @@ html {
   background-image: url("../img/background.jpg");
   background-position: center;
   background-size: cover;
-  height: 100%;
+
   font-family: "Audiowide", sans-serif;
 }
 
@@ -234,4 +234,8 @@ h3 {
   background-repeat: no-repeat;
   color: black;
   border-radius: 1rem;
+}
+
+.controls-container {
+  width: 18rem;
 }
