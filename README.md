@@ -37,11 +37,11 @@ List of tasks in order of priority
 
 Links
 
-Slide
-
 <a href="https://docs.google.com/presentation/d/1FfohU9d8IQYarso36vy9hRTLT1SmDP0KRlpZ_c2Fdws/edit?usp=sharing" target="_blank">Google Slides</a>
 
 Credits for assets
+
+
 https://www.vecteezy.com/vector-art/8029888-galaxy-space-abstract-background-with-star-and-comet-shapes-vector
 
 https://www.zapsplat.com/sound-effect-category/game-music-and-loops/
