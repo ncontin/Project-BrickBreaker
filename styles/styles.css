@@ -22,30 +22,11 @@ body {
 
 h1 {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  font-size: 4em;
+  font-size: 8em;
   font-weight: bold;
   color: white;
   text-align: center;
   animation: example 4s infinite;
-}
-
-@keyframes example {
-  0% {
-    color: white;
-    text-shadow: none;
-  }
-  25% {
-    color: red;
-    text-shadow: 0 0 10px black, 0 0 20px red;
-  }
-  50% {
-    color: orange;
-    text-shadow: 0 0 10px black, 0 0 20px orange;
-  }
-  75% {
-    color: yellow;
-    text-shadow: 0 0 10px black, 0 0 20px yellow;
-  }
 }
 
 .body-container {
@@ -140,5 +121,5 @@ h3 {
 #canvas {
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  border-image: url("/img/laser.png") 30% round;
+  border-image: url("img/laser.png") 30% round;
 }
