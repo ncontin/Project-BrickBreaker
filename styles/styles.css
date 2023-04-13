@@ -10,7 +10,7 @@ html {
   background: black;
   height: 100%;
   overflow: hidden;
-  background-image: url("./img/background.jpg");
+  background-image: url("../img/background.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -121,5 +121,5 @@ h3 {
 #canvas {
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  border-image: url("./img/laser.png") 30% round;
+  border-image: url("../img/laser.png") 30% round;
 }
