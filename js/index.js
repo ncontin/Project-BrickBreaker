@@ -81,9 +81,9 @@ bricksImg[9].src = "img/brick-yellow.png";
 //////////////////////////////////////////////////
 
 // fit canvas width and height to windows
-ctx.canvas.width = window.innerWidth - 200;
-ctx.canvas.height = window.innerHeight;
-// score, lives, gameOver
+/* ctx.canvas.width = window.innerWidth - 200;
+ctx.canvas.height = window.innerHeight; */
+
 // Define an object with some multipliers
 
 window.addEventListener("load", () => {
