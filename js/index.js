@@ -47,20 +47,21 @@ sounds.musicFast.loop = true;
 sounds.musicMedium.loop = true;
 sounds.musicSerious.loop = true;
 
+// targeting button to switch off sound
 const toggleSound = document.querySelector(".sound-button");
 let musicPlaying = true;
 let currentSound;
 
 // images
 
-const imageBg = new Image();
-imageBg.src = "img/background.jpg";
+// ball and paddle image
 
 const ballImg = new Image();
 ballImg.src = "img/ball.png";
 const paddleImg = new Image();
 paddleImg.src = "img/paddle.png";
 
+// create an empty array to push brick images
 const bricksImg = [];
 
 bricksImg.push(new Image());
@@ -98,6 +99,7 @@ window.addEventListener("load", () => {
   let multiPaddle = 1;
   let multiSize = 1;
 
+  // display score multiplayer on the landing page
   ballSpeedInput.addEventListener("change", () => {
     if (ballSpeedInput.value >= 15) {
       multiBall = 2;
@@ -159,6 +161,7 @@ window.addEventListener("load", () => {
   });
 });
 
+//start button
 function start() {
   startBtn.style.display = "none";
   document.querySelector("h1").style.display = "none";
@@ -270,10 +273,9 @@ function start() {
   scoreMultiplier();
 
   function drawScore() {
-    ctx.font = "bold 20px Arial"; // Use a bold and larger font
-    ctx.fillStyle = "white"; // Use white color for the text
-    // Offset the shadow by 2 pixels vertically
-    ctx.fillText(`Score: ${score}`, 10, 25); // Draw the text with some padding
+    ctx.font = "bold 20px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText(`Score: ${score}`, 10, 25);
   }
 
   function drawLives() {
