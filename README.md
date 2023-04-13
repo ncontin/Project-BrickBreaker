@@ -2,6 +2,8 @@
 
 Project Module 1 Ironhack
 
+Live Demo https://ncontin.github.io/Project-BrickBreaker/
+
 Description
 This if the the project at the end of Module 1 where I have to build a game using html, css and vanilla Javascript.
 The game I chose is Brick breaker because it reminds me of my childhood, is the first game I played when my family had a Windows 98 computer.
@@ -15,23 +17,24 @@ MVP
 
 Backlog
 
-- add difficulty
+- better collisions
 - power ups
 - multiple levels
-- balls breaker (girlfriend edition)
 
 Data structure
 index.js
 styles.css
+reset.css
 index.html
 
 States y States Transitions
-List of states (views) of your game
+
+splashScreen
+gameScreen
 
 Task
 List of tasks in order of priority
 
-Links
 
 Credits for assets
 https://www.vecteezy.com/vector-art/8029888-galaxy-space-abstract-background-with-star-and-comet-shapes-vector
