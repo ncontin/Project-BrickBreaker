@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide" />
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="shortcut icon" href="#" />
     <title>Brick Breaker</title>
   </head>
   <body>
@@ -18,89 +20,76 @@
           <h2 class="h2-left">What people are saying</h2>
 
           <div class="review-block">
-            "Best game I ever played" <br />
-            Matt - const gameReview = 10
-            <hr />
+            "Best game I ever played"
+            <div class="author">Matt - const gameReview = 10</div>
           </div>
           <div class="review-block">
             "This game changed my life"<br />
-            Josh - 10/10
-            <hr />
+            <div class="author">Josh - 10/10</div>
           </div>
           <div class="review-block">
-            "SO addicting I can't stop playing"<br />
-            Eric
-            <hr />
+            "So addictive I can't stop playing"<br />
+            <div class="author">Eric</div>
           </div>
           <div class="review-block">
             "Who created this is an absolute genius"<br />
-            My mum
+            <div class="author">My mum</div>
           </div>
         </div>
 
         <div class="start-container">
           <button class="start">Play</button>
-          <h3>About</h3>
+          <h3 class="about">About</h3>
           <p class="about-info">
-            In this game, the player moves a PADDLE from side-to-side to hit a BALL. The game's objective is to
-            eliminate all of the BRICKS at the top of the screen by hitting them with the BALL. But, if the ball hits
-            the bottom ENCLOSURE, the player loses a life, when the player has no more lives, the game ends! To win the
-            game, all the BRICKS must be eliminated.
+            Move your paddle back and forth using the arrow keys. Bounce the ball off of your paddle and strike down all
+            of the blocks.
           </p>
         </div>
 
         <div class="right-container">
           <h2 class="h2-right">Control Keys</h2>
-          <p>Use the arrow keys or the mouse to move the paddle right and left</p>
-          <img class="arrow-img" src="img/arrowKeys.png" alt="arrowKeys" />
-          <p>Use Spacebar or left click to launch the ball</p>
-          <img class="spacebar-img" src="img/spacebar.png" alt="spacebar" />
-          <h2>Customize the game</h2>
-          <form id="speed-form">
-            <label for="ball-speed-input">Ball Speed:</label>
-            <input type="number" id="ball-speed-input" min="1" max="25" value="10" />
-          </form>
-          <form id="paddle-form">
-            <label for="paddle-size-input">Paddle Size:</label>
-            <input type="number" id="paddle-size-input" min="25" max="500" value="120" />
-          </form>
-          <form id="ball-form">
-            <label for="ball-size-input">Ball Size:</label>
-            <input type="number" id="ball-size-input" min="5" max="50" value="10" />
-          </form>
-          <form id="brick-rows">
-            <label for="brick-rows-input">Brick rows:</label>
-            <input type="number" id="brick-rows-input" min="1" max="15" value="5" />
-          </form>
-          <div>Score Multiplier = <span id="multi-score"> 1 </span></div>
+          <div class="controls-container">
+            <p>Use the arrow keys or the mouse to move the paddle right and left</p>
+            <img class="arrow-img" src="img/arrowKeys.png" alt="arrowKeys" />
+            <p>Use Spacebar or left click to launch the ball</p>
+            <img class="spacebar-img" src="img/spacebar.png" alt="spacebar" />
+          </div>
+          <div class="custom-container">
+            <h2>Customize the game</h2>
+            <form id="speed-form">
+              <label for="ball-speed-input">Ball Speed:</label>
+              <input type="number" id="ball-speed-input" min="1" max="25" value="10" />
+            </form>
+            <form id="paddle-form">
+              <label for="paddle-size-input">Paddle Size:</label>
+              <input type="number" id="paddle-size-input" min="25" max="500" value="120" />
+            </form>
+            <form id="ball-form">
+              <label for="ball-size-input">Ball Size:</label>
+              <input type="number" id="ball-size-input" min="5" max="50" value="10" />
+            </form>
+            <form id="brick-rows">
+              <label for="brick-rows-input">Brick rows:</label>
+              <input type="number" id="brick-rows-input" min="1" max="10" value="5" />
+            </form>
+            <div>Score Multiplier = <span id="multi-score"> 1 </span>X</div>
+          </div>
         </div>
       </div>
     </div>
     <div class="canvas-wrapper">
-      <canvas id="canvas" width="1200" height="600"></canvas>
-
+      <canvas id="canvas" width="1200" height="700"></canvas>
+      <div class="canvas-bottom"></div>
       <div class="buttons-wrapper">
         <!-- <button class="restart">Restart</button> -->
         <button class="main-menu">Main Menu</button>
+        <button class="sound-button">Music ON</button>
+        <div class="volume">
+          Volume
+          <input id="volume-control" type="range" min="0" max="100" value="50" />
+        </div>
       </div>
     </div>
   </body>
   <script type="text/javascript" src="js/index.js"></script>
 </html>
-
-<!--     <canvas id="Matrix"></canvas>
-    <script type="text/javascript" src="js/matrix.js"></script> -->
-
-<!--                   [(ngModel)]="model.test"
-              class="form-control"
-              [disabled]="isDisabled()"
-              formControlName="test"
-              list="severity"
-
-
-                          <datalist id="severity">
-              <option value="20">Score 2x</option>
-              <option value="2">Medium</option>
-              <option value="3">Low</option>
-              <option value="4">Negligible</option>
-            </datalist> -->

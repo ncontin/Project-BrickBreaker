@@ -11,6 +11,8 @@ const ballSpeedInput = document.getElementById("ball-speed-input");
 const paddleSizeInput = document.getElementById("paddle-size-input");
 const ballSizeInput = document.getElementById("ball-size-input");
 const brickRowsInput = document.getElementById("brick-rows-input");
+const volumeControl = document.getElementById("volume-control");
+
 // score, lives, gameOver
 let lives = 3;
 let scoreMultiply = 1;
@@ -44,6 +46,10 @@ sounds.musicEasy.loop = true;
 sounds.musicFast.loop = true;
 sounds.musicMedium.loop = true;
 sounds.musicSerious.loop = true;
+
+const toggleSound = document.querySelector(".sound-button");
+let musicPlaying = true;
+let currentSound;
 
 // images
 
@@ -81,14 +87,11 @@ bricksImg[9].src = "img/brick-yellow.png";
 //////////////////////////////////////////////////
 
 // fit canvas width and height to windows
-/* ctx.canvas.width = window.innerWidth - 200;
-ctx.canvas.height = window.innerHeight; */
-
-// Define an object with some multipliers
+/* ctx.canvas.width = window.innerWidth - 200; */
+ctx.canvas.height = window.innerHeight;
 
 window.addEventListener("load", () => {
   canvas.style.display = "none";
-  // display Multi Score
 
   // declare each multiplier
   let multiBall = 1;
@@ -162,7 +165,7 @@ function start() {
   document.querySelector(".body-container").style.display = "none";
   canvas.style.display = "block";
 
-  buttons.style.display = "block";
+  buttons.style.display = "flex";
 
   // PADDLE VARIABLES
 
@@ -178,7 +181,7 @@ function start() {
 
   function drawPaddle() {
     ctx.beginPath();
-    // xPos, yPos, width, height
+    // image, xPos, yPos, width, height
     ctx.drawImage(paddleImg, paddleX, paddleY, paddleWidth, paddleHeight);
     ctx.fillStyle = "red";
     ctx.fill();
@@ -219,23 +222,23 @@ function start() {
     switch (true) {
       case ballSpeed >= 25:
         scoreMultiply *= 4;
-        sounds.musicFast.play();
+        currentSound = sounds.musicFast;
         break;
       case ballSpeed >= 20:
         scoreMultiply *= 3;
-        sounds.musicSerious.play();
+        currentSound = sounds.musicSerious;
         break;
       case ballSpeed >= 15:
         scoreMultiply *= 2;
-        sounds.musicMedium.play();
+        currentSound = sounds.musicMedium;
         break;
       case ballSpeed <= 5:
         scoreMultiply *= 0.5;
-        sounds.musicEasy.play();
+        currentSound = sounds.musicEasy;
         break;
 
       default:
-        sounds.musicDefault.play();
+        currentSound = sounds.musicDefault;
         break;
     }
 
@@ -260,7 +263,6 @@ function start() {
         scoreMultiply *= 2;
         break;
       default:
-        // do nothing if none of the above conditions are met
         break;
     }
   }
@@ -268,28 +270,33 @@ function start() {
   scoreMultiplier();
 
   function drawScore() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "red";
-    ctx.fillText(`Score: ${score}`, 5, 20);
+    ctx.font = "bold 20px Arial"; // Use a bold and larger font
+    ctx.fillStyle = "white"; // Use white color for the text
+    // Offset the shadow by 2 pixels vertically
+    ctx.fillText(`Score: ${score}`, 10, 25); // Draw the text with some padding
   }
 
   function drawLives() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "red";
-    ctx.fillText(`Lives: ${lives}`, canvas.width - 70, 20);
+    ctx.font = "bold 20px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText(`Lives: ${lives}`, canvas.width - 100, 20);
   }
 
   function congratulationsScreen() {
     ctx.font = "40px Arial";
-    ctx.fillStyle = "red";
-    ctx.fillText("CONGRATULATIONS", canvas.width / 2 - 120, canvas.height / 2);
-    ctx.fillText("please buy the game to unlock more levels", canvas.width / 2 - 300, canvas.height / 2 + 60);
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("CONGRATULATIONS", canvas.width / 2, canvas.height / 2);
+    ctx.fillText("Please buy the game to unlock more levels", canvas.width / 2, canvas.height / 2 + 60);
   }
 
   function gameOverScreen() {
-    ctx.font = "40px Arial";
-    ctx.fillStyle = "red";
-    ctx.fillText("GAME OVER", canvas.width / 2 - 120, canvas.height / 2);
+    ctx.font = "80px Arial";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
   }
 
   function gameOver() {
@@ -435,13 +442,14 @@ function start() {
       // if brick has not been hit
       if (brick.hit === true)
         if (
+          // // if ball is inside brick
           ballX + ballRadius > brick.x &&
           ballX - ballRadius < brick.x + brick.width &&
           ballY + ballRadius > brick.y &&
           ballY - ballRadius < brick.y + brick.height
         ) {
           sounds.ballHitBrick.play();
-          // // if ball is inside brick
+
           // if ball hit left or right side of brick, change X direction
           if (ballX + ballRadius - ballDirectionX <= brick.x || ballX - ballDirectionX >= brick.x + brick.width) {
             ballDirectionX *= -1;
@@ -497,8 +505,25 @@ function start() {
     }
   });
 
-  //launch ball with the click
+  currentSound.play();
 
+  toggleSound.addEventListener("click", () => {
+    if (musicPlaying) {
+      currentSound.pause();
+      toggleSound.innerText = "Music OFF";
+      musicPlaying = false;
+    } else {
+      currentSound.play();
+      musicPlaying = true;
+      toggleSound.innerText = "Music ON";
+    }
+  });
+
+  volumeControl.addEventListener("input", function () {
+    currentSound.volume = this.value / 100;
+  });
+
+  //launch ball with the click
   canvas.addEventListener("click", (event) => {
     if (!ballLaunched) {
       launchBall();
@@ -508,7 +533,10 @@ function start() {
   //loop
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+    ctx.shadowColor = "aqua";
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = -2;
     drawPaddle();
     drawBricks();
     drawBall();
@@ -524,10 +552,4 @@ function start() {
     congratulations();
   }
   animate();
-
-  const restartBtn = document.querySelector(".restart");
-
-  /*   restartBtn.addEventListener("click", () => {
-    canvas.reload();
-  }); */
 }

@@ -1,32 +1,36 @@
-#canvas {
-  display: block;
-  margin: auto;
-}
 #logo {
   display: none;
 }
 
 html {
-  background: black;
-  height: 100%;
-  overflow: hidden;
   background-image: url("../img/background.jpg");
   background-position: center;
   background-size: cover;
+  height: 100%;
+  font-family: "Audiowide", sans-serif;
 }
 
 body {
   font-size: 16px;
-  color: white;
+  color: rgba(255, 212, 234, 0.747);
+
+  margin: 0;
 }
 
 h1 {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  font-size: 8em;
+  font-family: "Audiowide", sans-serif;
+  font-size: 6em;
   font-weight: bold;
-  color: white;
+  text-transform: uppercase;
+  color: rgba(104, 135, 221, 0.651);
   text-align: center;
-  animation: example 4s infinite;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc, 0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc,
+    0 8px 0 #ccc, 0 9px 0 #ccc, 0 10px 0 #ccc, 0 11px 0 #ccc, 0 12px 0 #ccc, 0 20px 30px rgba(0, 0, 0, 0.5);
+  background-image: url("../img/02-Breakout-Tiles.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 2.5rem 5rem;
+  margin-top: 1rem;
 }
 
 .body-container {
@@ -55,22 +59,34 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+
+  gap: 20px;
   flex: 2;
   padding-top: 5rem;
 }
 
 .start {
-  padding: 2rem 8rem;
-  border-radius: 4rem;
+  border-radius: 50%;
+  width: 15rem;
+  height: 15rem;
+  margin-top: -5rem;
   font-size: 3rem;
-  height: 200px;
+  text-transform: uppercase;
+  color: white;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url("../img/hole_large_end_alt.png");
+  font-family: "Audiowide", sans-serif;
 }
 
 .h2-left,
 .h2-right {
   font-size: 2rem;
   margin-bottom: 2rem;
+  margin-top: -2rem;
+}
+.h2-left {
+  margin-bottom: 0;
 }
 
 .right-container {
@@ -86,7 +102,12 @@ h1 {
 }
 
 h3 {
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   font-size: 2rem;
+  background-image: url(../img/21-Breakout-Tiles.png);
 }
 
 .arrow-img {
@@ -99,7 +120,7 @@ h3 {
 
 .review-block {
   margin-top: 20px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .canvas-wrapper {
@@ -110,16 +131,107 @@ h3 {
   display: flex;
   flex-direction: column;
 }
-.restart,
-.main-menu {
+
+.main-menu,
+.sound-button {
   margin-top: 2rem;
-  margin-left: 2rem;
+
   height: 4rem;
-  width: 8rem;
 }
 
 #canvas {
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  border-image: url("../img/laser.png") 30% round;
+  border-image: url("../img/block_locked_narrow.png") 100 repeat;
+}
+
+#volume-control {
+  width: 200px;
+  height: 10px;
+}
+
+.h2-left,
+.h2-right {
+  background-image: url("../img/button_yellow.png");
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  height: 5rem;
+  color: black;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  vertical-align: middle;
+}
+
+.review-block {
+  border-radius: 1rem;
+  height: 3rem;
+  padding: 1rem;
+  width: 16rem;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  vertical-align: middle;
+}
+
+.review-block:nth-child(2) {
+  background-image: url("../img/brick-grey.png");
+  color: white;
+}
+.review-block:nth-child(3) {
+  background-image: url("../img/brick-dark-green.png");
+  color: white;
+}
+.review-block:nth-child(4) {
+  background-image: url("../img/brick-light-blu.png");
+  color: white;
+}
+.review-block:nth-child(5) {
+  background-image: url("../img/brick-red.png");
+  color: white;
+}
+
+.about-info {
+  background-image: url("../img/brick-orange.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: black;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.custom-container {
+  background-image: url("../img/23-Breakout-Tiles.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: black;
+  border-radius: 1rem;
+
+  height: 8rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.main-menu,
+.sound-button,
+.volume {
+  font-family: "Audiowide", sans-serif;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.main-menu {
+  background-image: url("../img/button_grey.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: black;
+  border-radius: 1rem;
+}
+
+.sound-button {
+  background-image: url("../img/button_blue.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: black;
+  border-radius: 1rem;
 }
