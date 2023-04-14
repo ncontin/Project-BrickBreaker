@@ -42,8 +42,8 @@ index.html
 
 ## Credits for assets
 
-<a href="https://www.vecteezy.com/vector-art/8029888-galaxy-space-abstract-background-with-star-and-comet-shapes-vectortarget="_blank">Background Image</a>
+<a href="https://www.vecteezy.com/vector-art/8029888-galaxy-space-abstract-background-with-star-and-comet-shapes-vectortarget"target=_blank">Background Image</a>
 
-<a href="https://www.zapsplat.com/sound-effect-category/game-music-and-loops/"_blank">Background Image</a>
+<a href="https://www.zapsplat.com/sound-effect-category/game-music-and-loops/"target=_blank">Background Image</a>
 
-<a href="https://opengameart.org/content/breakout-brick-breaker-tile-set-free"_blank">Background Image</a>
+<a href="https://opengameart.org/content/breakout-brick-breaker-tile-set-free"target=_blank">Background Image</a>
