@@ -2,15 +2,12 @@
   display: none;
 }
 
-html {
+body {
   background-image: url("../img/background.jpg");
   background-position: center;
   background-size: cover;
-
+  height: 100vh;
   font-family: "Audiowide", sans-serif;
-}
-
-body {
   font-size: 16px;
   color: rgba(255, 212, 234, 0.747);
 
