@@ -1,6 +1,6 @@
 # Project-BrickBreaker
 
-Project Module 1 Ironhack
+Project Module 1
 
 Live Demo https://ncontin.github.io/Project-BrickBreaker/
 
